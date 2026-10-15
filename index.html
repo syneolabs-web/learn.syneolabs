@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Syneo Lab - Coming Soon</title>
+    
+    <!-- Load Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- Load Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Custom Tailwind Configuration -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    },
+                    colors: {
+                        syneo: {
+                            light: '#e0f2fe',
+                            DEFAULT: '#0ea5e9', // Primary Blue
+                            dark: '#0284c7',
+                            text: '#074bed',
+                        }
+                    },
+                    animation: {
+                        'float': 'float 6s ease-in-out infinite',
+                        'blob': 'blob 7s infinite',
+                    },
+                    keyframes: {
+                        float: {
+                            '0%, 100%': { transform: 'translateY(0)' },
+                            '50%': { transform: 'translateY(-20px)' },
+                        },
+                        blob: {
+                            '0%': { transform: 'translate(0px, 0px) scale(1)' },
+                            '33%': { transform: 'translate(30px, -50px) scale(1.1)' },
+                            '66%': { transform: 'translate(-20px, 20px) scale(0.9)' },
+                            '100%': { transform: 'translate(0px, 0px) scale(1)' },
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        body {
+            background: linear-gradient(135deg, #f0f0ff 0%, #ffffff 100%);
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+        
+        /* Custom styling for the hand-drawn underline effect */
+        .highlight-text {
+            position: relative;
+            display: inline-block;
+            z-index: 1;
+        }
+        .highlight-text::after {
+            content: '';
+            position: absolute;
+            left: -2%;
+            bottom: 5px;
+            width: 104%;
+            height: 12px;
+            background-color: #1e08ec; /* Yellow highlight similar to reference */
+            z-index: -1;
+            transform: rotate(-1deg);
+            border-radius: 4px;
+        }
+
+        /* Toast notification styling */
+        #toast-container {
+            position: fixed;
+            top: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 1000;
+            pointer-events: none;
+        }
+        .toast {
+            background: linear-gradient(to right, #0e1de9, #2563eb);
+            color: white;
+            padding: 12px 24px;
+            border-radius: 9999px;
+            font-weight: 600;
+            box-shadow: 0 10px 25px -5px rgba(40, 14, 233, 0.5);
+            opacity: 0;
+            transform: translateY(-20px);
+            transition: all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+        }
+        .toast.show {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+</head>
+<body class="text-syneo-text font-sans antialiased flex flex-col relative">
+
+    <!-- Custom Toast Notification Container (Replacing alert()) -->
+    <div id="toast-container">
+        <div id="toast-message" class="toast">Coming Soon!</div>
+    </div>
+
+    <!-- Decorative background elements -->
+    <div class="absolute top-0 left-0 w-full h-full overflow-hidden -z-10 pointer-events-none">
+        <div class="absolute top-[-10%] left-[-10%] w-96 h-96 bg-blue-100 rounded-full mix-blend-multiply filter blur-3xl opacity-70 animate-blob"></div>
+        <div class="absolute top-[20%] right-[-5%] w-96 h-96 bg-blue-200 rounded-full mix-blend-multiply filter blur-3xl opacity-70 animate-blob animation-delay-2000"></div>
+        <div class="absolute bottom-[-20%] left-[20%] w-96 h-96 bg-yellow-100 rounded-full mix-blend-multiply filter blur-3xl opacity-70 animate-blob animation-delay-4000"></div>
+    </div>
+
+    <!-- Header / Navigation -->
+
+    <header class="w-full max-w-7xl mx-auto px-6 py-6 sm:px-8 lg:px-12 flex justify-between items-center z-10">
+    <!-- Logo -->
+    <a href="#" class="flex items-center gap-2">
+        <!-- Here is where we put your picture! -->
+        <img src="syneolabs_logo.png" alt="Syneo Lab Logo" class="h-14 w-auto">
+    </a>
+ 
+
+        <!-- Desktop Menu -->
+        <nav class="hidden md:flex items-center gap-8 font-medium text-gray-600">
+            <a href="#" class="hover:text-blue-600 transition-colors">Home</a>
+            <a href="#" class="hover:text-blue-600 transition-colors">About Us</a>
+            <a href="#" class="hover:text-blue-600 transition-colors">Courses</a>
+            <a href="#" class="hover:text-blue-600 transition-colors">FAQ</a>
+        </nav>
+
+        <!-- CTA Button -->
+        <a href="#" class="hidden sm:inline-flex bg-blue-600 hover:from-cyan-500 hover:to-blue-600 text-white font-semibold py-2.5 px-6 rounded-full shadow-lg shadow-blue-500/30 transition-all transform hover:scale-105">
+            Contact Us
+        </a>
+
+        <!-- Mobile Menu Button (Visual only for this demo) -->
+        <button class="md:hidden text-gray-600 p-2">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-6 h-6">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
+            </svg>
+        </button>
+    </header>
+
+    <!-- Main Hero Section -->
+    <main class="flex-grow flex items-center w-full max-w-7xl mx-auto px-6 sm:px-8 lg:px-12 py-12 lg:py-0 z-10">
+        <div class="flex flex-col lg:flex-row items-center justify-between w-full gap-12 lg:gap-8">
+            
+            <!-- Left Side: Text Content -->
+            <div class="w-full lg:w-1/2 flex flex-col items-start text-left pt-10 lg:pt-0">
+                <h1 class="text-4xl sm:text-5xl lg:text-6xl font-extrabold leading-tight text-gray-900 mb-6">
+                    <span class="text-blue-600">Skills That</span><br>
+                    Degrees Can't<br>
+                    <span class="highlight-text text-gray-900">Teach!!!</span>
+                </h1>
+                
+                <p class="text-lg sm:text-xl text-gray-600 mb-8 max-w-lg leading-relaxed">
+                    Learn by building real-world projects, push your work to GitHub, and create a portfolio that showcases your skills. Industry-led courses designed to help you move beyond learning and start building what matters.
+                </p>
+                
+                <div class="relative inline-block">
+                    <button class="bg-blue-600 hover:from-cyan-500 hover:to-blue-600 text-white font-bold text-lg py-4 px-8 rounded-full shadow-xl shadow-blue-500/40 transition-all transform hover:scale-105 hover:-translate-y-1">
+                        Explore Courses
+                    </button>
+                    
+                    <!-- Decorative hand-drawn arrow pointing to button -->
+                    <div class="absolute -right-20 bottom-[-30px] hidden md:block opacity-60 pointer-events-none transform rotate-12">
+                        <svg width="80" height="80" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M10 50 Q 40 10, 80 40 T 70 80" stroke="#333" stroke-width="3" fill="transparent" stroke-linecap="round"/>
+                            <path d="M60 75 L 70 80 L 75 70" stroke="#333" stroke-width="3" fill="transparent" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Right Side: Image and Decorative Blob -->
+            <div class="w-full lg:w-1/2 relative flex justify-center items-center mt-12 lg:mt-0">
+                <!-- SVG Organic Blob Background -->
+                <div class="absolute w-[120%] h-[120%] max-w-[600px] z-0 text-blue-600 animate-float opacity-90">
+                    <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+                        <path fill="currentColor" d="M44.7,-76.4C58.3,-69.2,70.1,-58.1,79.5,-44.6C88.9,-31.1,95.9,-15.5,94.9,-0.6C93.9,14.4,85,28.8,75.4,42.1C65.8,55.4,55.5,67.6,42.4,75.6C29.3,83.6,13.4,87.4,-1.8,90.5C-17,93.6,-34,96,-48.5,89.5C-63,83.1,-75.1,67.8,-82.7,51.2C-90.3,34.6,-93.4,17.3,-92.1,0.8C-90.8,-15.8,-85,-31.6,-75.6,-45.3C-66.2,-59,-53.2,-70.6,-38.8,-77.3C-24.4,-84,-8.6,-85.8,5.7,-95.6C20,-105.4,40,-123.3,44.7,-76.4Z" transform="translate(100 100) scale(1.1)" />
+                    </svg>
+            
+                </div>
+                
+                <!-- Main Image -->
+                <div class="relative z-10 w-full max-w-[500px] aspect-square rounded-full overflow-hidden border-8 border-white shadow-2xl">
+                    <img src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80" alt="Students collaborating on tech projects" class="w-full h-full object-cover">
+                </div>
+
+                <!-- Floating Accent Elements -->
+                <div class="absolute top-10 right-10 z-20 w-16 h-16 bg-yellow-400 rounded-full mix-blend-multiply opacity-80 blur-sm animate-float animation-delay-2000"></div>
+                <div class="absolute bottom-10 left-10 z-20 w-24 h-24 bg-cyan-400 rounded-full mix-blend-multiply opacity-60 blur-md animate-float animation-delay-4000"></div>
+                
+                <!-- Decorative lines similar to reference -->
+                <div class="absolute top-0 left-0 z-20 opacity-30 transform -rotate-12 pointer-events-none">
+                     <svg width="60" height="60" viewBox="0 0 100 100" stroke="#0ea5e9" stroke-width="4" stroke-linecap="round">
+                        <line x1="10" y1="20" x2="50" y2="20" />
+                        <line x1="20" y1="40" x2="60" y2="40" />
+                        <line x1="30" y1="60" x2="70" y2="60" />
+                     </svg>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- JavaScript for "Coming Soon" interactions -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const toast = document.getElementById('toast-message');
+            let toastTimeout;
+
+            // Function to show custom toast message
+            function showComingSoon(e) {
+                // Prevent default navigation or form submission
+                e.preventDefault();
+                
+                // Clear any existing timeouts to prevent flashing
+                if (toastTimeout) {
+                    clearTimeout(toastTimeout);
+                }
+
+                // Show toast
+                toast.classList.add('show');
+
+                // Hide toast after 3 seconds
+                toastTimeout = setTimeout(() => {
+                    toast.classList.remove('show');
+                }, 3000);
+            }
+
+            // Attach event listener to ALL anchor tags and buttons
+            const clickableElements = document.querySelectorAll('a, button');
+            clickableElements.forEach(element => {
+                element.addEventListener('click', showComingSoon);
+            });
+        });
+    </script>
+</body>
+</html>
